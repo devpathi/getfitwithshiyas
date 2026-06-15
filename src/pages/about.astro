@@ -37,7 +37,10 @@ const photos = ["/images/shiyas-1.jpg", "/images/shiyas-2.jpg", "/images/shiyas-
             a month. I build a program around <em>your</em> body, your goals, and your real life — and
             I coach you through it with the accountability that makes results actually stick.
           </p>
-          <p>{site.story}</p>
+          {site.story.split("\n\n").map((para) => <p>{para}</p>)}
+          <blockquote class="mt-6 border-l-4 border-accent pl-5 italic text-ink/70">
+            "I believe fitness is not just about looking better—it's about living better, feeling stronger, and becoming the best version of yourself." – Abdul Shiyas
+          </blockquote>
         </div>
 
         <h3 class="mt-8 font-display text-xl font-bold">Credentials & Certifications</h3>
