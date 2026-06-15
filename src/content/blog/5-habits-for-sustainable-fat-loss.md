@@ -2,12 +2,12 @@
 title: "5 Habits That Make Fat Loss Actually Stick"
 description: "Crash diets fail because they ignore your habits. Here are five simple ones that keep the weight off for good."
 date: 2026-05-20
-author: Shiyas Cheradiyil
+author: Shiyas
 cover: ""
 draft: false
 ---
 
-Most people don't struggle to lose weight — they struggle to *keep* it off. After 14 years of
+Most people don't struggle to lose weight — they struggle to *keep* it off. After 20 years of
 coaching, I've found that the clients who succeed long-term aren't the ones with the strictest
 diets. They're the ones who build a handful of simple habits and stay consistent.
 

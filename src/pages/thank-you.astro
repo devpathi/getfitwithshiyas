@@ -4,7 +4,7 @@ import site from "../data/site.json";
 const waLink = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(site.whatsappMessage)}`;
 ---
 
-<Base title="Thank you | Get Fit With Shiyas">
+<Base title={`Thank you | ${site.name}`}>
   <section class="bg-ink text-white">
     <div class="container-tight flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">
       <div class="grid h-16 w-16 place-items-center rounded-full bg-accent text-2xl text-ink">✓</div>

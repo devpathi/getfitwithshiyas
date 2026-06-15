@@ -1,11 +1,11 @@
 ---
 name: 1-on-1 Personal Training
-price: "[[REPLACE: ₹X,XXX]]"
-period: "/ month"
+price: "₹15,000"
+period: "/ 12 sessions"
 mode: In-person · Bengaluru
 features:
-  - 3–5 in-person sessions per week
-  - Fully personalised training plan
+  - 12 personalised in-person sessions
+  - Fully customised training plan
   - Real-time form correction
   - Nutrition guidance
   - Progress tracking every session

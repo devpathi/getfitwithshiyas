@@ -14,7 +14,7 @@ interface Props {
 }
 
 const {
-  title = `${site.name} | Personal Trainer in Bengaluru`,
+  title = `${site.name} — Personal Trainer in Bengaluru`,
   description = `${site.tagline}. In-person & online personal training and coaching with ${site.trainer} — ${site.yearsExperience} years of experience.`,
 } = Astro.props;
 
@@ -26,6 +26,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/jpeg" href="/images/logo.jpeg" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />

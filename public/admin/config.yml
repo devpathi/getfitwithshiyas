@@ -39,8 +39,6 @@ collections:
           - { name: "whatsapp", label: "WhatsApp number (digits only, with country code)", widget: "string", hint: "e.g. 918197081829" }
           - { name: "whatsappMessage", label: "Default WhatsApp message", widget: "text" }
           - { name: "email", label: "Email", widget: "string" }
-          - { name: "emailNote", label: "Email note (internal)", widget: "hidden", required: false }
-          - { name: "calendlyUrl", label: "Calendly booking link", widget: "string" }
           - name: "social"
             label: "Social links"
             widget: "object"
@@ -59,7 +57,7 @@ collections:
       - { name: "title", label: "Title", widget: "string" }
       - { name: "description", label: "Short description", widget: "text" }
       - { name: "date", label: "Date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-      - { name: "author", label: "Author", widget: "string", default: "Shiyas Cheradiyil" }
+      - { name: "author", label: "Author", widget: "string", default: "Shiyas" }
       - { name: "cover", label: "Cover image", widget: "image", required: false }
       - { name: "draft", label: "Draft (hide from site)", widget: "boolean", default: false }
       - { name: "body", label: "Post content", widget: "markdown" }

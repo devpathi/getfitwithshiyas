@@ -8,7 +8,7 @@ const blog = defineCollection({
     description: z.string(),
     date: z.coerce.date(),
     cover: z.string().optional(),
-    author: z.string().default("Shiyas Cheradiyil"),
+    author: z.string().default("Shiyas"),
     draft: z.boolean().default(false),
   }),
 });

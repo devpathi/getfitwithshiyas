@@ -3,14 +3,17 @@ import Base from "../layouts/Base.astro";
 import CTASection from "../components/CTASection.astro";
 import site from "../data/site.json";
 
-const credentials = [
-  "[[REPLACE: Certification 1 — e.g. Certified Personal Trainer]]",
-  "[[REPLACE: Certification 2 — e.g. Nutrition certification]]",
-  "[[REPLACE: Certification 3 — e.g. Specialisation]]",
+const certPhotos = [
+  "/images/certificate.jpg",
+  "/images/certificate-9.jpg",
+  "/images/certificate-11.jpg",
+  "/images/certificate-12.jpg",
 ];
+
+const photos = ["/images/shiyas-1.jpg", "/images/shiyas-2.jpg", "/images/shiyas-3.jpg"];
 ---
 
-<Base title={`About ${site.trainer} | Get Fit With Shiyas`} description={`Meet ${site.trainer}, a personal trainer with ${site.yearsExperience} years of experience in ${site.city}.`}>
+<Base title={`About ${site.trainer} | ${site.name}`} description={`Meet ${site.trainer}, a personal trainer with ${site.yearsExperience} years of experience in ${site.city}.`}>
   <section class="bg-ink text-white">
     <div class="container-tight py-16 md:py-20">
       <p class="eyebrow text-accent">About your coach</p>
@@ -25,7 +28,7 @@ const credentials = [
         <h2 class="font-display text-2xl font-bold md:text-3xl">My story</h2>
         <div class="mt-5 space-y-4 text-ink/75 leading-relaxed">
           <p>
-            I'm Shiyas Cheradiyil, a personal trainer based in {site.city}. For over {site.yearsExperience}
+            I'm {site.trainer}, a personal trainer based in {site.city}. For over {site.yearsExperience}
             years I've helped men and women of every level get stronger, leaner, and more confident —
             both in person and online.
           </p>
@@ -34,22 +37,34 @@ const credentials = [
             a month. I build a program around <em>your</em> body, your goals, and your real life — and
             I coach you through it with the accountability that makes results actually stick.
           </p>
-          <p>[[REPLACE: Add a few personal lines from Shiyas — what got him into coaching, his philosophy, what he's most proud of.]]</p>
+          <p>[[REPLACE: Story details from Shiyas — to be sent via ChatGPT later]]</p>
         </div>
 
-        <h3 class="mt-8 font-display text-xl font-bold">Credentials</h3>
-        <ul class="mt-4 space-y-2 text-sm text-ink/75">
-          {credentials.map((c) => <li class="flex gap-2.5"><span class="text-accent">✓</span>{c}</li>)}
-        </ul>
+        <h3 class="mt-8 font-display text-xl font-bold">Credentials & Certifications</h3>
+        <div class="mt-4 grid grid-cols-2 gap-3">
+          {certPhotos.map((src, i) => (
+            <a href={src} target="_blank" rel="noopener noreferrer" class="group overflow-hidden rounded-xl border border-black/8 transition hover:border-accent">
+              <img src={src} alt={`Certification ${i + 1}`} class="h-full w-full object-cover transition group-hover:scale-105" loading="lazy" />
+            </a>
+          ))}
+        </div>
       </div>
 
-      <div class="order-1 md:order-2">
-        <div class="aspect-[4/5] overflow-hidden rounded-3xl bg-cream">
-          <div class="flex h-full items-center justify-center p-8 text-center text-muted">
-            <span>[[REPLACE: Photo of Shiyas<br/>→ /public/images/shiyas.jpg]]</span>
+      <div class="order-1 md:order-2 space-y-4">
+        <!-- Primary photo -->
+        <div class="aspect-[4/3] overflow-hidden rounded-3xl bg-cream">
+          <img src={photos[0]} alt={`${site.trainer} — personal trainer`} class="h-full w-full object-cover" />
+        </div>
+        <!-- Two secondary photos side by side -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="aspect-square overflow-hidden rounded-2xl bg-cream">
+            <img src={photos[1]} alt={`${site.trainer} coaching`} class="h-full w-full object-cover" />
+          </div>
+          <div class="aspect-square overflow-hidden rounded-2xl bg-cream">
+            <img src={photos[2]} alt={`${site.trainer} training`} class="h-full w-full object-cover" />
           </div>
         </div>
-        <div class="mt-6 grid grid-cols-3 gap-4 text-center">
+        <div class="grid grid-cols-3 gap-4 text-center">
           <div class="rounded-xl bg-cream p-4"><p class="font-display text-2xl font-bold text-accent-dark">{site.yearsExperience}</p><p class="text-xs text-muted">Years</p></div>
           <div class="rounded-xl bg-cream p-4"><p class="font-display text-2xl font-bold text-accent-dark">{site.clientsCoached}</p><p class="text-xs text-muted">Clients</p></div>
           <div class="rounded-xl bg-cream p-4"><p class="font-display text-2xl font-bold text-accent-dark">{site.rating}★</p><p class="text-xs text-muted">Rating</p></div>

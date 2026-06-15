@@ -2,7 +2,7 @@
 title: "Online vs In-Person Coaching: Which Is Right for You?"
 description: "Both work. The right choice depends on your schedule, your experience, and how you stay accountable. Here's how to decide."
 date: 2026-05-06
-author: Shiyas Cheradiyil
+author: Shiyas
 cover: ""
 draft: false
 ---

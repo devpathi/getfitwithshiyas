@@ -4,25 +4,94 @@ import BMICalculator from "../../components/calculators/BMICalculator.astro";
 import TDEECalculator from "../../components/calculators/TDEECalculator.astro";
 import MacroCalculator from "../../components/calculators/MacroCalculator.astro";
 import CTASection from "../../components/CTASection.astro";
+import site from "../../data/site.json";
 ---
 
-<Base title="Free Fitness Tools | Get Fit With Shiyas" description="Free BMI, calorie (TDEE), and macro calculators to plan your fitness journey.">
+<Base title={`Free Fitness Tools | ${site.name}`} description="Free BMI, calorie (TDEE), and macro calculators to plan your fitness journey.">
   <section class="bg-ink text-white">
     <div class="container-tight py-16 md:py-20">
       <p class="eyebrow text-accent">Free tools</p>
-      <h1 class="mt-3 font-display text-4xl font-bold md:text-5xl">Plan your journey</h1>
-      <p class="mt-4 max-w-2xl text-lg text-white/70">Quick, free calculators to get you started. For a plan built around your numbers, book a free trial.</p>
+      <h1 class="mt-3 font-display text-4xl font-bold md:text-5xl">Know your numbers</h1>
+      <p class="mt-4 max-w-2xl text-lg text-white/70">Use these free calculators to understand your body and set the right targets before you start training.</p>
     </div>
   </section>
 
   <section class="bg-white">
-    <div class="container-tight py-16 md:py-20">
-      <div class="grid gap-6 lg:grid-cols-3">
+    <div class="container-tight py-16 md:py-20 space-y-12">
+
+      <!-- BMI -->
+      <div class="grid gap-8 md:grid-cols-2 items-start">
+        <div>
+          <h2 class="font-display text-2xl font-bold">BMI Calculator</h2>
+          <p class="mt-3 text-ink/70 leading-relaxed">
+            <strong>Body Mass Index (BMI)</strong> is a quick screening number based on your height and weight.
+            It tells you whether you fall into the underweight, normal, overweight, or obese range.
+          </p>
+          <p class="mt-3 text-ink/70 leading-relaxed">
+            BMI is a starting point — not the whole picture. It doesn't account for muscle mass, body fat distribution, or fitness level. Use it as a rough baseline alongside other markers.
+          </p>
+          <div class="mt-4 rounded-xl bg-cream p-4 text-sm">
+            <p class="font-semibold">BMI ranges</p>
+            <ul class="mt-2 space-y-1 text-ink/70">
+              <li>Under 18.5 — Underweight</li>
+              <li>18.5–24.9 — Normal weight</li>
+              <li>25–29.9 — Overweight</li>
+              <li>30 and above — Obese</li>
+            </ul>
+          </div>
+        </div>
         <BMICalculator />
+      </div>
+
+      <hr class="border-black/8" />
+
+      <!-- TDEE / Calories -->
+      <div class="grid gap-8 md:grid-cols-2 items-start">
+        <div>
+          <h2 class="font-display text-2xl font-bold">Calorie / TDEE Calculator</h2>
+          <p class="mt-3 text-ink/70 leading-relaxed">
+            <strong>Total Daily Energy Expenditure (TDEE)</strong> is how many calories your body burns in a day — including your activity level. It's the single most important number for any fat loss or muscle-building goal.
+          </p>
+          <p class="mt-3 text-ink/70 leading-relaxed">
+            Eat below your TDEE to lose fat. Eat at or slightly above it to build muscle. Eat at your TDEE to maintain weight while improving body composition.
+          </p>
+          <div class="mt-4 rounded-xl bg-cream p-4 text-sm text-ink/70">
+            <p class="font-semibold text-ink">How to use the result</p>
+            <ul class="mt-2 space-y-1">
+              <li><strong>Lose fat:</strong> eat ~500 kcal/day below TDEE</li>
+              <li><strong>Maintain:</strong> eat at TDEE</li>
+              <li><strong>Build muscle:</strong> eat ~300 kcal/day above TDEE</li>
+            </ul>
+          </div>
+        </div>
         <TDEECalculator />
+      </div>
+
+      <hr class="border-black/8" />
+
+      <!-- Macro -->
+      <div class="grid gap-8 md:grid-cols-2 items-start">
+        <div>
+          <h2 class="font-display text-2xl font-bold">Macro Calculator</h2>
+          <p class="mt-3 text-ink/70 leading-relaxed">
+            <strong>Macros (macronutrients)</strong> are the three food groups your body runs on: protein, carbohydrates, and fat. Knowing how many grams of each to eat daily turns a vague calorie target into a clear, actionable nutrition plan.
+          </p>
+          <p class="mt-3 text-ink/70 leading-relaxed">
+            Enter your daily calorie target (use the TDEE calculator above if you're not sure) and select your goal. The calculator splits it into the right protein, carb, and fat targets for that goal.
+          </p>
+          <div class="mt-4 rounded-xl bg-cream p-4 text-sm text-ink/70">
+            <p class="font-semibold text-ink">Why macros matter</p>
+            <ul class="mt-2 space-y-1">
+              <li><strong>Protein</strong> — builds and preserves muscle</li>
+              <li><strong>Carbs</strong> — your body's main fuel source</li>
+              <li><strong>Fat</strong> — hormones, joint health, and satiety</li>
+            </ul>
+          </div>
+        </div>
         <MacroCalculator />
       </div>
-      <p class="mt-6 text-center text-xs text-muted">These tools give general estimates and aren't medical advice. For a personalised plan, work with Shiyas.</p>
+
+      <p class="text-center text-xs text-muted">These tools give general estimates and are not a substitute for medical advice. For a personalised plan, work with Shiyas.</p>
     </div>
   </section>
 

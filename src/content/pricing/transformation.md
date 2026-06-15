@@ -1,11 +1,12 @@
 ---
 name: Transformation Package
-price: "[[REPLACE: ₹XX,XXX]]"
+price: "₹60,000"
 period: "/ 12 weeks"
 mode: In-person & Online
 features:
-  - 12-week structured transformation plan
-  - Training + nutrition + accountability
+  - Goal-oriented 12-week structured plan
+  - More sessions for faster results
+  - Full dietary plan included
   - Weekly progress photos & measurements
   - Priority WhatsApp support
   - Before / after documentation

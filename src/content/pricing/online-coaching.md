@@ -1,7 +1,7 @@
 ---
 name: Online Coaching
-price: "[[REPLACE: ₹X,XXX]]"
-period: "/ month"
+price: "₹12,000"
+period: "/ 12 sessions"
 mode: Fully remote
 features:
   - Custom training plan for your equipment
