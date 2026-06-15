@@ -39,6 +39,7 @@ collections:
           - { name: "whatsapp", label: "WhatsApp number (digits only, with country code)", widget: "string", hint: "e.g. 918197081829" }
           - { name: "whatsappMessage", label: "Default WhatsApp message", widget: "text" }
           - { name: "email", label: "Email", widget: "string" }
+          - { name: "story", label: "My Story (About page)", widget: "text" }
           - name: "social"
             label: "Social links"
             widget: "object"
