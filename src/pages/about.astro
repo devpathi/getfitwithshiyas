@@ -1,0 +1,62 @@
+---
+import Base from "../layouts/Base.astro";
+import CTASection from "../components/CTASection.astro";
+import site from "../data/site.json";
+
+const credentials = [
+  "[[REPLACE: Certification 1 — e.g. Certified Personal Trainer]]",
+  "[[REPLACE: Certification 2 — e.g. Nutrition certification]]",
+  "[[REPLACE: Certification 3 — e.g. Specialisation]]",
+];
+---
+
+<Base title={`About ${site.trainer} | Get Fit With Shiyas`} description={`Meet ${site.trainer}, a personal trainer with ${site.yearsExperience} years of experience in ${site.city}.`}>
+  <section class="bg-ink text-white">
+    <div class="container-tight py-16 md:py-20">
+      <p class="eyebrow text-accent">About your coach</p>
+      <h1 class="mt-3 font-display text-4xl font-bold md:text-5xl">Meet {site.trainer}</h1>
+      <p class="mt-4 max-w-2xl text-lg text-white/70">{site.tagline} — for {site.yearsExperience} years and counting.</p>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="container-tight grid gap-12 py-16 md:grid-cols-2 md:py-20">
+      <div class="order-2 md:order-1">
+        <h2 class="font-display text-2xl font-bold md:text-3xl">My story</h2>
+        <div class="mt-5 space-y-4 text-ink/75 leading-relaxed">
+          <p>
+            I'm Shiyas Cheradiyil, a personal trainer based in {site.city}. For over {site.yearsExperience}
+            years I've helped men and women of every level get stronger, leaner, and more confident —
+            both in person and online.
+          </p>
+          <p>
+            My approach is simple: no generic plans, no crash diets, no quick fixes that fall apart in
+            a month. I build a program around <em>your</em> body, your goals, and your real life — and
+            I coach you through it with the accountability that makes results actually stick.
+          </p>
+          <p>[[REPLACE: Add a few personal lines from Shiyas — what got him into coaching, his philosophy, what he's most proud of.]]</p>
+        </div>
+
+        <h3 class="mt-8 font-display text-xl font-bold">Credentials</h3>
+        <ul class="mt-4 space-y-2 text-sm text-ink/75">
+          {credentials.map((c) => <li class="flex gap-2.5"><span class="text-accent">✓</span>{c}</li>)}
+        </ul>
+      </div>
+
+      <div class="order-1 md:order-2">
+        <div class="aspect-[4/5] overflow-hidden rounded-3xl bg-cream">
+          <div class="flex h-full items-center justify-center p-8 text-center text-muted">
+            <span>[[REPLACE: Photo of Shiyas<br/>→ /public/images/shiyas.jpg]]</span>
+          </div>
+        </div>
+        <div class="mt-6 grid grid-cols-3 gap-4 text-center">
+          <div class="rounded-xl bg-cream p-4"><p class="font-display text-2xl font-bold text-accent-dark">{site.yearsExperience}</p><p class="text-xs text-muted">Years</p></div>
+          <div class="rounded-xl bg-cream p-4"><p class="font-display text-2xl font-bold text-accent-dark">{site.clientsCoached}</p><p class="text-xs text-muted">Clients</p></div>
+          <div class="rounded-xl bg-cream p-4"><p class="font-display text-2xl font-bold text-accent-dark">{site.rating}★</p><p class="text-xs text-muted">Rating</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection heading="Let's build your plan together" />
+</Base>

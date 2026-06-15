@@ -1,0 +1,97 @@
+---
+import site from "../data/site.json";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/programs", label: "Programs" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/results", label: "Results" },
+  { href: "/blog", label: "Blog" },
+  { href: "/tools", label: "Tools" },
+  { href: "/contact", label: "Contact" },
+];
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-black/5 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70"
+>
+  <nav class="container-tight flex h-16 items-center justify-between">
+    <a href="/" class="flex items-center gap-2 font-display text-lg font-bold tracking-tight">
+      <span class="grid h-8 w-8 place-items-center rounded-full bg-ink text-accent">S</span>
+      <span>Get Fit With <span class="text-accent-dark">Shiyas</span></span>
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden items-center gap-7 lg:flex">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class:list={[
+                "text-sm font-medium transition hover:text-accent-dark",
+                isActive(l.href) ? "text-accent-dark" : "text-ink/70",
+              ]}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="hidden lg:block">
+      <a href="/book" class="btn-primary text-sm">Book free trial</a>
+    </div>
+
+    <!-- Mobile toggle -->
+    <button
+      id="menu-toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+      class="grid h-10 w-10 place-items-center rounded-lg border border-black/10 lg:hidden"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-black/5 bg-white lg:hidden">
+    <ul class="container-tight flex flex-col py-3">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class:list={[
+                "block rounded-lg px-3 py-2.5 text-base font-medium",
+                isActive(l.href) ? "bg-cream text-accent-dark" : "text-ink/80",
+              ]}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="px-3 pt-2 pb-1">
+        <a href="/book" class="btn-primary w-full">Book free trial</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  toggle?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+</script>

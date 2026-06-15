@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import PricingCard from "../components/PricingCard.astro";
+import FAQ from "../components/FAQ.astro";
+import CTASection from "../components/CTASection.astro";
+
+const pricing = (await getCollection("pricing")).sort((a, b) => a.data.order - b.data.order);
+
+const faqs = [
+  { q: "Is the first session really free?", a: "Yes — your first trial/consultation is free with no commitment, so you can experience the coaching before you decide." },
+  { q: "Are there any joining or registration fees?", a: "[[REPLACE: confirm whether there are any one-time fees]]." },
+  { q: "Can I pay monthly?", a: "[[REPLACE: confirm payment terms — monthly / quarterly / per package]]." },
+  { q: "What's included in each plan?", a: "Every plan includes a personalised training program. Online and transformation plans add nutrition guidance, check-ins, and WhatsApp support — see each card above." },
+];
+---
+
+<Base title="Pricing | Get Fit With Shiyas" description="Transparent personal training and online coaching packages. Start with a free trial.">
+  <section class="bg-ink text-white">
+    <div class="container-tight py-16 md:py-20">
+      <p class="eyebrow text-accent">Pricing</p>
+      <h1 class="mt-3 font-display text-4xl font-bold md:text-5xl">Simple, honest pricing</h1>
+      <p class="mt-4 max-w-2xl text-lg text-white/70">Start free. Choose the plan that matches your goals and how you want to train.</p>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="container-tight py-16 md:py-20">
+      <div class="grid items-stretch gap-6 md:grid-cols-3">
+        {pricing.map((p) => (
+          <PricingCard name={p.data.name} price={p.data.price} period={p.data.period} mode={p.data.mode} features={p.data.features} highlighted={p.data.highlighted} cta={p.data.cta} />
+        ))}
+      </div>
+      <p class="mt-6 text-center text-sm text-muted">[[REPLACE: confirm final prices — edit them in /admin → Pricing, or in src/content/pricing/]]</p>
+    </div>
+  </section>
+
+  <section class="bg-cream">
+    <div class="container-tight py-16 md:py-20">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="eyebrow">Pricing FAQ</p>
+        <h2 class="mt-3 font-display text-3xl font-bold">Good to know</h2>
+      </div>
+      <div class="mt-10"><FAQ items={faqs} /></div>
+    </div>
+  </section>
+
+  <CTASection />
+</Base>

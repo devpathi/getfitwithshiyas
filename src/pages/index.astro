@@ -1,0 +1,183 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import ProgramCard from "../components/ProgramCard.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import PricingCard from "../components/PricingCard.astro";
+import FAQ from "../components/FAQ.astro";
+import CTASection from "../components/CTASection.astro";
+import site from "../data/site.json";
+
+const waLink = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(site.whatsappMessage)}`;
+
+const programs = (await getCollection("programs")).sort((a, b) => a.data.order - b.data.order);
+
+const testimonialEntries = (await getCollection("testimonials"))
+  .filter((t) => t.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+const testimonials = await Promise.all(
+  testimonialEntries.map(async (t) => ({ data: t.data, body: t.body })),
+);
+
+const pricing = (await getCollection("pricing")).sort((a, b) => a.data.order - b.data.order);
+
+const steps = [
+  { n: "01", t: "Assessment", d: "We start with your goals, history, and current fitness — in person or over a call." },
+  { n: "02", t: "Your plan", d: "A training and nutrition plan built around your body, schedule, and equipment." },
+  { n: "03", t: "Coaching", d: "Weekly coaching, form correction, and accountability so you stay on track." },
+  { n: "04", t: "Results", d: "We track progress and adjust — so the results keep coming and they last." },
+];
+
+const why = [
+  { t: "No generic plans", d: "Every program is built for you — never copy-pasted templates." },
+  { t: "14+ years of experience", d: "Coaching men and women of every level since 2010." },
+  { t: "Habit-first approach", d: "We build a lifestyle you can keep, not a crash diet you'll quit." },
+  { t: "In-person & online", d: "Train with Shiyas in Bengaluru or remotely from anywhere." },
+  { t: "Real accountability", d: "Weekly check-ins and direct WhatsApp access keep you consistent." },
+  { t: "Built for the long term", d: "We care about your health and strength for life, not just a quick before/after." },
+];
+
+const faqs = [
+  { q: "Do you offer a free trial?", a: "Yes. Your first consultation/trial session is completely free and there's no commitment — it's the best way to see if we're the right fit." },
+  { q: "I'm a complete beginner. Is that okay?", a: "Absolutely. A large part of my clients start as beginners. I'll teach you proper form from day one and progress you safely." },
+  { q: "Do you coach women?", a: "Yes — I build customised programs for both men and women, whether the goal is fat loss, strength, or building muscle." },
+  { q: "Can you coach me if I'm not in Bengaluru?", a: "Yes. My online coaching gives you a custom plan, weekly check-ins, and direct WhatsApp access no matter where you live." },
+  { q: "What does it cost?", a: "Pricing depends on the program and whether you train in person or online. See the Pricing page, or message me and I'll recommend the best option for your goals." },
+];
+---
+
+<Base>
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-ink text-white">
+    <div class="absolute inset-0 opacity-[0.10]" style="background-image:radial-gradient(circle at 20% 20%, #e01e37 0, transparent 40%), radial-gradient(circle at 80% 80%, #e01e37 0, transparent 40%);"></div>
+    <div class="container-tight relative grid items-center gap-12 py-20 lg:grid-cols-2 lg:py-28">
+      <div>
+        <p class="eyebrow text-accent">{site.tagline}</p>
+        <h1 class="mt-4 font-display text-4xl font-bold leading-tight md:text-6xl">
+          Become the <span class="text-accent">strongest</span> version of yourself
+        </h1>
+        <p class="mt-5 max-w-lg text-lg text-white/70">
+          Personalised in-person & online coaching with {site.trainer} in {site.city}.
+          Real plans, real accountability, real results.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/book" class="btn-primary">Book your free trial</a>
+          <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-outline">WhatsApp Shiyas</a>
+        </div>
+        <!-- social proof -->
+        <div class="mt-10 flex flex-wrap gap-8">
+          <div><p class="font-display text-3xl font-bold text-accent">{site.yearsExperience}</p><p class="text-sm text-white/60">Years experience</p></div>
+          <div><p class="font-display text-3xl font-bold text-accent">{site.clientsCoached}</p><p class="text-sm text-white/60">Clients coached</p></div>
+          <div><p class="font-display text-3xl font-bold text-accent">{site.rating}★</p><p class="text-sm text-white/60">Client rating</p></div>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="aspect-[4/5] overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+          <!-- To change this photo: replace /public/images/hero.jpg with your own (portrait works best) -->
+          <img
+            src="/images/hero.jpg"
+            alt={`${site.trainer} — personal trainer in ${site.city}`}
+            width="2316"
+            height="3088"
+            class="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="bg-white">
+    <div class="container-tight py-20">
+      <div class="max-w-2xl">
+        <p class="eyebrow">What I offer</p>
+        <h2 class="mt-3 font-display text-3xl font-bold md:text-4xl">Programs built around your goals</h2>
+        <p class="mt-4 text-ink/70">Pick the path that fits your life. Every program is fully personalised.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {programs.map((p) => <ProgramCard title={p.data.title} summary={p.data.summary} mode={p.data.mode} bestFor={p.data.bestFor} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="bg-cream">
+    <div class="container-tight py-20">
+      <div class="max-w-2xl">
+        <p class="eyebrow">How it works</p>
+        <h2 class="mt-3 font-display text-3xl font-bold md:text-4xl">A simple path to real results</h2>
+      </div>
+      <div class="mt-12 grid gap-8 md:grid-cols-4">
+        {steps.map((s) => (
+          <div>
+            <p class="font-display text-4xl font-bold text-accent/40">{s.n}</p>
+            <h3 class="mt-2 text-lg font-bold">{s.t}</h3>
+            <p class="mt-2 text-sm text-ink/70">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="bg-white">
+    <div class="container-tight py-20">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Why train with Shiyas</p>
+        <h2 class="mt-3 font-display text-3xl font-bold md:text-4xl">Coaching that actually works</h2>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {why.map((w) => (
+          <div class="rounded-2xl border border-black/8 p-6">
+            <div class="grid h-10 w-10 place-items-center rounded-full bg-cream text-accent-dark">✓</div>
+            <h3 class="mt-4 font-bold">{w.t}</h3>
+            <p class="mt-2 text-sm text-ink/70">{w.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="bg-cream">
+    <div class="container-tight py-20">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Client results</p>
+        <h2 class="mt-3 font-display text-3xl font-bold md:text-4xl">Transformations that speak for themselves</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {testimonials.map((t) => <TestimonialCard name={t.data.name} result={t.data.result} photo={t.data.photo} body={t.body} />)}
+      </div>
+      <p class="mt-8 text-center"><a href="/results" class="font-semibold text-accent-dark hover:underline">See more results →</a></p>
+    </div>
+  </section>
+
+  <!-- PRICING TEASER -->
+  <section class="bg-white">
+    <div class="container-tight py-20">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Pricing</p>
+        <h2 class="mt-3 font-display text-3xl font-bold md:text-4xl">Simple plans for every goal</h2>
+        <p class="mt-4 text-ink/70">Start with a free trial — no commitment. Choose in-person, online, or a full transformation package.</p>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {pricing.map((p) => (
+          <PricingCard name={p.data.name} price={p.data.price} period={p.data.period} mode={p.data.mode} features={p.data.features} highlighted={p.data.highlighted} cta={p.data.cta} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-cream">
+    <div class="container-tight py-20">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="mt-3 font-display text-3xl font-bold md:text-4xl">Questions, answered</h2>
+      </div>
+      <div class="mt-10"><FAQ items={faqs} /></div>
+    </div>
+  </section>
+
+  <CTASection />
+</Base>

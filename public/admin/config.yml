@@ -1,0 +1,111 @@
+# Decap CMS configuration — powers the visual editor at /admin
+# Edits here commit to your Git repo, which triggers Netlify to rebuild the site.
+
+# Set to true ONLY for local testing (works with `npx decap-server`).
+# Leave it in — it's ignored in production, where git-gateway is used instead.
+local_backend: true
+
+backend:
+  name: git-gateway
+  branch: main # change if your default branch is named differently
+
+# Where uploaded images are stored / referenced from
+media_folder: "public/images"
+public_folder: "/images"
+
+# Friendlier editor: shows a live note about the build
+publish_mode: simple
+
+collections:
+  # ---- SITE SETTINGS (contact details, social links, hero copy) ----
+  - name: "settings"
+    label: "Site Settings"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: "site"
+        label: "Contact & Site Info"
+        file: "src/data/site.json"
+        fields:
+          - { name: "name", label: "Site name", widget: "string" }
+          - { name: "trainer", label: "Trainer name", widget: "string" }
+          - { name: "tagline", label: "Tagline", widget: "string" }
+          - { name: "subtitle", label: "Subtitle", widget: "string" }
+          - { name: "yearsExperience", label: "Years of experience", widget: "string" }
+          - { name: "clientsCoached", label: "Clients coached", widget: "string" }
+          - { name: "rating", label: "Rating", widget: "string" }
+          - { name: "city", label: "City / location", widget: "string" }
+          - { name: "phone", label: "Phone (display)", widget: "string" }
+          - { name: "whatsapp", label: "WhatsApp number (digits only, with country code)", widget: "string", hint: "e.g. 918197081829" }
+          - { name: "whatsappMessage", label: "Default WhatsApp message", widget: "text" }
+          - { name: "email", label: "Email", widget: "string" }
+          - { name: "emailNote", label: "Email note (internal)", widget: "hidden", required: false }
+          - { name: "calendlyUrl", label: "Calendly booking link", widget: "string" }
+          - name: "social"
+            label: "Social links"
+            widget: "object"
+            fields:
+              - { name: "instagram", label: "Instagram URL", widget: "string" }
+              - { name: "facebook", label: "Facebook URL", widget: "string" }
+              - { name: "youtube", label: "YouTube URL", widget: "string" }
+
+  # ---- BLOG ----
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "description", label: "Short description", widget: "text" }
+      - { name: "date", label: "Date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { name: "author", label: "Author", widget: "string", default: "Shiyas Cheradiyil" }
+      - { name: "cover", label: "Cover image", widget: "image", required: false }
+      - { name: "draft", label: "Draft (hide from site)", widget: "boolean", default: false }
+      - { name: "body", label: "Post content", widget: "markdown" }
+
+  # ---- TESTIMONIALS ----
+  - name: "testimonials"
+    label: "Testimonials"
+    folder: "src/content/testimonials"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "name", label: "Client name", widget: "string" }
+      - { name: "result", label: "Result (e.g. Lost 12 kg)", widget: "string" }
+      - { name: "photo", label: "Client photo", widget: "image", required: false }
+      - { name: "youtube", label: "YouTube video (optional)", widget: "string", required: false }
+      - { name: "order", label: "Display order", widget: "number", default: 0 }
+      - { name: "featured", label: "Show on homepage", widget: "boolean", default: true }
+      - { name: "body", label: "Quote", widget: "text" }
+
+  # ---- PROGRAMS ----
+  - name: "programs"
+    label: "Programs / Services"
+    folder: "src/content/programs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "summary", label: "Summary", widget: "text" }
+      - { name: "mode", label: "Mode", widget: "select", options: ["In-person", "Online", "In-person & Online"] }
+      - { name: "icon", label: "Icon key", widget: "string", default: "dumbbell" }
+      - { name: "bestFor", label: "Best for", widget: "string", required: false }
+      - { name: "order", label: "Display order", widget: "number", default: 0 }
+      - { name: "body", label: "Details", widget: "markdown", required: false }
+
+  # ---- PRICING ----
+  - name: "pricing"
+    label: "Pricing Packages"
+    folder: "src/content/pricing"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: "name", label: "Package name", widget: "string" }
+      - { name: "price", label: "Price (e.g. ₹5,000)", widget: "string" }
+      - { name: "period", label: "Period (e.g. / month)", widget: "string", required: false }
+      - { name: "mode", label: "Mode (e.g. In-person)", widget: "string", required: false }
+      - { name: "features", label: "Features", widget: "list", field: { name: "feature", label: "Feature", widget: "string" } }
+      - { name: "highlighted", label: "Highlight as 'most popular'", widget: "boolean", default: false }
+      - { name: "cta", label: "Button text", widget: "string", default: "Book a free trial" }
+      - { name: "order", label: "Display order", widget: "number", default: 0 }

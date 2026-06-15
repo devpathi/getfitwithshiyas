@@ -1,0 +1,61 @@
+---
+import site from "../data/site.json";
+const year = new Date().getFullYear();
+const waLink = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(site.whatsappMessage)}`;
+---
+
+<footer class="bg-ink text-white/80">
+  <div class="container-tight grid gap-10 py-14 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-2 font-display text-lg font-bold text-white">
+        <span class="grid h-8 w-8 place-items-center rounded-full bg-accent text-ink">S</span>
+        Get Fit With Shiyas
+      </div>
+      <p class="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
+        {site.tagline}. Personalised in-person & online coaching with {site.trainer},
+        {site.yearsExperience} years of experience, based in {site.city}.
+      </p>
+      <div class="mt-5 flex gap-3">
+        <a href={site.social.instagram} aria-label="Instagram" class="footer-social">IG</a>
+        <a href={site.social.facebook} aria-label="Facebook" class="footer-social">FB</a>
+        <a href={site.social.youtube} aria-label="YouTube" class="footer-social">YT</a>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Explore</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href="/about" class="hover:text-accent">About Shiyas</a></li>
+        <li><a href="/programs" class="hover:text-accent">Programs</a></li>
+        <li><a href="/pricing" class="hover:text-accent">Pricing</a></li>
+        <li><a href="/results" class="hover:text-accent">Results</a></li>
+        <li><a href="/blog" class="hover:text-accent">Blog</a></li>
+        <li><a href="/tools" class="hover:text-accent">Free tools</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Get in touch</h3>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href={`tel:${site.phone.replace(/\s/g, "")}`} class="hover:text-accent">{site.phone}</a></li>
+        <li><a href={`mailto:${site.email}`} class="hover:text-accent">{site.email}</a></li>
+        <li><a href={waLink} class="hover:text-accent">WhatsApp</a></li>
+        <li><a href="/book" class="hover:text-accent">Book a free trial</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-tight flex flex-col items-center justify-between gap-2 py-5 text-xs text-white/50 sm:flex-row">
+      <p>&copy; {year} Get Fit With Shiyas. All rights reserved.</p>
+      <p>Built for {site.trainer} · {site.city}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  @reference "../styles/global.css";
+  .footer-social {
+    @apply grid h-9 w-9 place-items-center rounded-full border border-white/20 text-xs font-semibold text-white/80 transition hover:border-accent hover:text-accent;
+  }
+</style>

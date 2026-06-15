@@ -1,0 +1,65 @@
+---
+// Macro calculator — splits a target calorie figure into protein/carbs/fat.
+---
+<div class="calc rounded-2xl border border-black/8 bg-white p-7" data-calc="macro">
+  <h3 class="font-display text-xl font-bold">Macro Calculator</h3>
+  <p class="mt-1 text-sm text-muted">Turn a calorie target into protein, carbs & fat.</p>
+
+  <div class="mt-5 grid gap-4 sm:grid-cols-2">
+    <label class="block text-sm font-medium">Daily calories (kcal)
+      <input type="number" name="calories" min="800" max="6000" step="10" class="calc-input" placeholder="2200" />
+    </label>
+    <label class="block text-sm font-medium">Goal
+      <select name="goal" class="calc-input">
+        <option value="loss">Fat loss (higher protein)</option>
+        <option value="maintain" selected>Maintain / recomposition</option>
+        <option value="gain">Build muscle</option>
+      </select>
+    </label>
+  </div>
+  <button type="button" class="btn-dark mt-5 w-full" data-action="calc">Calculate macros</button>
+
+  <p class="calc-error mt-3 hidden text-sm text-red-600"></p>
+  <div class="calc-result mt-5 hidden grid grid-cols-3 gap-3 text-center">
+    <div class="rounded-xl bg-cream p-4"><p class="text-xs text-muted">Protein</p><p class="font-display text-2xl font-bold text-accent-dark" data-out="protein"></p><p class="text-xs text-muted">grams</p></div>
+    <div class="rounded-xl bg-cream p-4"><p class="text-xs text-muted">Carbs</p><p class="font-display text-2xl font-bold text-accent-dark" data-out="carbs"></p><p class="text-xs text-muted">grams</p></div>
+    <div class="rounded-xl bg-cream p-4"><p class="text-xs text-muted">Fat</p><p class="font-display text-2xl font-bold text-accent-dark" data-out="fat"></p><p class="text-xs text-muted">grams</p></div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-calc="macro"]').forEach((root) => {
+    const val = (n: string) => (root.querySelector(`[name="${n}"]`) as HTMLInputElement)?.value;
+    const err = root.querySelector(".calc-error") as HTMLElement;
+    const result = root.querySelector(".calc-result") as HTMLElement;
+    const set = (k: string, v: number) =>
+      ((root.querySelector(`[data-out="${k}"]`) as HTMLElement).textContent = String(v));
+
+    // protein %, fat %, carbs %  (carbs fill the remainder)
+    const splits: Record<string, [number, number]> = {
+      loss: [0.4, 0.25],
+      maintain: [0.3, 0.27],
+      gain: [0.3, 0.25],
+    };
+
+    root.querySelector('[data-action="calc"]')?.addEventListener("click", () => {
+      const cals = parseFloat(val("calories"));
+      const goal = val("goal") as string;
+      err.classList.add("hidden");
+      if (!cals || cals <= 0) {
+        err.textContent = "Enter a valid daily calorie figure (try the TDEE calculator first).";
+        err.classList.remove("hidden");
+        result.classList.add("hidden");
+        return;
+      }
+      const [pPct, fPct] = splits[goal] ?? splits.maintain;
+      const protein = Math.round((cals * pPct) / 4);
+      const fat = Math.round((cals * fPct) / 9);
+      const carbs = Math.round((cals * (1 - pPct - fPct)) / 4);
+      set("protein", protein);
+      set("carbs", carbs);
+      set("fat", fat);
+      result.classList.remove("hidden");
+    });
+  });
+</script>

@@ -1,0 +1,51 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import CTASection from "../../components/CTASection.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+type Props = { post: CollectionEntry<"blog"> };
+const { post } = Astro.props;
+const { Content } = await post.render();
+const fmt = (d: Date) => d.toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+---
+
+<Base title={`${post.data.title} | Get Fit With Shiyas`} description={post.data.description}>
+  <article>
+    <header class="bg-ink text-white">
+      <div class="container-tight max-w-3xl py-16 md:py-20">
+        <a href="/blog" class="text-sm text-accent hover:underline">← All posts</a>
+        <h1 class="mt-4 font-display text-3xl font-bold leading-tight md:text-4xl">{post.data.title}</h1>
+        <p class="mt-4 text-sm text-white/60">{fmt(post.data.date)} · {post.data.author}</p>
+      </div>
+    </header>
+
+    <div class="bg-white">
+      <div class="container-tight max-w-3xl py-14">
+        {post.data.cover && <img src={post.data.cover} alt={post.data.title} class="mb-10 w-full rounded-2xl" />}
+        <div class="prose-content">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <CTASection />
+</Base>
+
+<style is:global>
+  @reference "../../styles/global.css";
+  .prose-content { @apply text-ink/80 leading-relaxed; }
+  .prose-content h2 { @apply mt-10 mb-3 font-display text-2xl font-bold text-ink; }
+  .prose-content h3 { @apply mt-8 mb-2 font-display text-xl font-bold text-ink; }
+  .prose-content p { @apply my-4; }
+  .prose-content ul { @apply my-4 list-disc space-y-1.5 pl-6; }
+  .prose-content ol { @apply my-4 list-decimal space-y-1.5 pl-6; }
+  .prose-content a { @apply font-semibold text-accent-dark underline; }
+  .prose-content hr { @apply my-10 border-black/10; }
+  .prose-content strong { @apply font-semibold text-ink; }
+</style>

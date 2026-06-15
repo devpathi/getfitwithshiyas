@@ -1,0 +1,30 @@
+---
+import Base from "../../layouts/Base.astro";
+import BMICalculator from "../../components/calculators/BMICalculator.astro";
+import TDEECalculator from "../../components/calculators/TDEECalculator.astro";
+import MacroCalculator from "../../components/calculators/MacroCalculator.astro";
+import CTASection from "../../components/CTASection.astro";
+---
+
+<Base title="Free Fitness Tools | Get Fit With Shiyas" description="Free BMI, calorie (TDEE), and macro calculators to plan your fitness journey.">
+  <section class="bg-ink text-white">
+    <div class="container-tight py-16 md:py-20">
+      <p class="eyebrow text-accent">Free tools</p>
+      <h1 class="mt-3 font-display text-4xl font-bold md:text-5xl">Plan your journey</h1>
+      <p class="mt-4 max-w-2xl text-lg text-white/70">Quick, free calculators to get you started. For a plan built around your numbers, book a free trial.</p>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="container-tight py-16 md:py-20">
+      <div class="grid gap-6 lg:grid-cols-3">
+        <BMICalculator />
+        <TDEECalculator />
+        <MacroCalculator />
+      </div>
+      <p class="mt-6 text-center text-xs text-muted">These tools give general estimates and aren't medical advice. For a personalised plan, work with Shiyas.</p>
+    </div>
+  </section>
+
+  <CTASection heading="Know your numbers? Now get a plan." text="Book a free trial and Shiyas will turn these numbers into a program built for you." />
+</Base>

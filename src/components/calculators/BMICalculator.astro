@@ -1,0 +1,56 @@
+---
+// BMI calculator — pure client-side, no dependencies.
+---
+<div class="calc rounded-2xl border border-black/8 bg-white p-7" data-calc="bmi">
+  <h3 class="font-display text-xl font-bold">BMI Calculator</h3>
+  <p class="mt-1 text-sm text-muted">Check your Body Mass Index.</p>
+
+  <div class="mt-5 grid gap-4 sm:grid-cols-2">
+    <label class="block text-sm font-medium">Weight (kg)
+      <input type="number" name="weight" min="20" max="400" step="0.1" class="calc-input" placeholder="70" />
+    </label>
+    <label class="block text-sm font-medium">Height (cm)
+      <input type="number" name="height" min="80" max="260" step="0.1" class="calc-input" placeholder="175" />
+    </label>
+  </div>
+  <button type="button" class="btn-dark mt-5 w-full" data-action="calc">Calculate BMI</button>
+
+  <p class="calc-error mt-3 hidden text-sm text-red-600"></p>
+  <div class="calc-result mt-5 hidden rounded-xl bg-cream p-5 text-center">
+    <p class="text-sm text-muted">Your BMI</p>
+    <p class="font-display text-4xl font-bold text-accent-dark" data-out="value"></p>
+    <p class="mt-1 font-semibold" data-out="category"></p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-calc="bmi"]').forEach((root) => {
+    const $ = (s: string) => root.querySelector(s) as HTMLElement | null;
+    const num = (n: string) =>
+      parseFloat((root.querySelector(`[name="${n}"]`) as HTMLInputElement)?.value);
+    const err = $(".calc-error")!;
+    const result = $(".calc-result")!;
+
+    root.querySelector('[data-action="calc"]')?.addEventListener("click", () => {
+      const w = num("weight");
+      const hCm = num("height");
+      err.classList.add("hidden");
+      if (!w || !hCm || w <= 0 || hCm <= 0) {
+        err.textContent = "Please enter a valid weight and height.";
+        err.classList.remove("hidden");
+        result.classList.add("hidden");
+        return;
+      }
+      const h = hCm / 100;
+      const bmi = w / (h * h);
+      let cat = "Normal weight";
+      if (bmi < 18.5) cat = "Underweight";
+      else if (bmi < 25) cat = "Normal weight";
+      else if (bmi < 30) cat = "Overweight";
+      else cat = "Obese";
+      (root.querySelector('[data-out="value"]') as HTMLElement).textContent = bmi.toFixed(1);
+      (root.querySelector('[data-out="category"]') as HTMLElement).textContent = cat;
+      result.classList.remove("hidden");
+    });
+  });
+</script>

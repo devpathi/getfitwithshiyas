@@ -1,0 +1,20 @@
+---
+interface Props {
+  items: { q: string; a: string }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="mx-auto max-w-3xl divide-y divide-black/8">
+  {
+    items.map((item) => (
+      <details class="group py-5">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left font-semibold">
+          {item.q}
+          <span class="shrink-0 text-accent transition group-open:rotate-45">＋</span>
+        </summary>
+        <p class="mt-3 text-sm leading-relaxed text-ink/70">{item.a}</p>
+      </details>
+    ))
+  }
+</div>

@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import CTASection from "../components/CTASection.astro";
+
+const entries = (await getCollection("testimonials")).sort((a, b) => a.data.order - b.data.order);
+const testimonials = entries.map((t) => ({ data: t.data, body: t.body }));
+---
+
+<Base title="Results & Testimonials | Get Fit With Shiyas" description="Real transformations from clients coached by Shiyas — in person and online.">
+  <section class="bg-ink text-white">
+    <div class="container-tight py-16 md:py-20">
+      <p class="eyebrow text-accent">Results</p>
+      <h1 class="mt-3 font-display text-4xl font-bold md:text-5xl">Real people, real transformations</h1>
+      <p class="mt-4 max-w-2xl text-lg text-white/70">These are the clients who showed up, trusted the process, and changed their bodies and their lives.</p>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div class="container-tight py-16 md:py-20">
+      <div class="grid gap-6 md:grid-cols-3">
+        {testimonials.map((t) => <TestimonialCard name={t.data.name} result={t.data.result} photo={t.data.photo} body={t.body} />)}
+      </div>
+
+      <!-- Before / after gallery -->
+      <h2 class="mt-16 font-display text-2xl font-bold">Transformation gallery</h2>
+      <p class="mt-2 text-sm text-muted">[[REPLACE: add real before/after photos. Drop pairs into /public/images/ and they'll show here.]]</p>
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {[1, 2, 3].map((i) => (
+          <div class="aspect-[4/3] rounded-2xl bg-cream">
+            <div class="flex h-full items-center justify-center text-center text-muted text-sm">
+              <span>[[REPLACE: Before / after #{i}]]</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection heading="Your transformation could be next" />
+</Base>

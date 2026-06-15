@@ -1,0 +1,23 @@
+---
+import site from "../data/site.json";
+const waLink = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(site.whatsappMessage)}`;
+interface Props {
+  heading?: string;
+  text?: string;
+}
+const {
+  heading = "Ready to start your transformation?",
+  text = "Book a free, no-commitment trial session or message Shiyas directly on WhatsApp.",
+} = Astro.props;
+---
+
+<section class="bg-ink">
+  <div class="container-tight py-16 text-center md:py-20">
+    <h2 class="font-display text-3xl font-bold text-white md:text-4xl">{heading}</h2>
+    <p class="mx-auto mt-4 max-w-xl text-white/70">{text}</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href="/book" class="btn-primary">Book free trial</a>
+      <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn-outline">Message on WhatsApp</a>
+    </div>
+  </div>
+</section>
