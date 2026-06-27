@@ -1,5 +1,5 @@
 ---
-title: 1-on-1 Personal Training
+title: PREMIUM
 summary: Hands-on coaching at your pace in Bengaluru. Every session is
   programmed around your body, your goals, and your schedule — with form
   correction and progression built in.
