@@ -1,10 +1,10 @@
 ---
-name: 1-on-1 Personal Training
-price: "₹15,000"
-period: "/ 12 sessions"
-mode: In-person · Bengaluru
+name: PREMIUM
+price: ₹15,000
+period: / 12 sessions
+mode: "1 on 1 Personal Training "
 features:
-  - 12 personalised in-person sessions
+  - 12 private training sessions
   - Fully customised training plan
   - Real-time form correction
   - Nutrition guidance
