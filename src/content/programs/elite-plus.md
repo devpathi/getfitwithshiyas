@@ -12,5 +12,5 @@ summary: |-
   Maximum accountability
 mode: In-person
 icon: dumbbell
-order: 0
+order: 4
 ---
