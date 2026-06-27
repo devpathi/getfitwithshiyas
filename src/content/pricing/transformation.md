@@ -10,7 +10,7 @@ features:
   - Weekly progress photos & measurements
   - Priority WhatsApp support
   - Before / after documentation
-highlighted: false
+highlighted: true
 cta: Apply now
 order: 3
 ---
