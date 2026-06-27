@@ -1,6 +1,6 @@
 ---
 name: Elite Plus
-price: 18000/Month
+price: ₹18,000/Month
 period: ""
 mode: In-Person
 features:
@@ -12,5 +12,5 @@ features:
   - Maximum accountability
 highlighted: false
 cta: Contact me for this program
-order: 0
+order: 4
 ---
