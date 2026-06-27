@@ -1,6 +1,8 @@
 ---
-title: Weight-Loss Coaching
-summary: A sustainable fat-loss system built on habits you can actually keep — no crash diets. Training plus simple nutrition guidance to transform your body for good.
+title: ELITE
+summary: A sustainable fat-loss system built on habits you can actually keep —
+  no crash diets. Training plus simple nutrition guidance to transform your body
+  for good.
 mode: In-person & Online
 icon: scale
 bestFor: Anyone wanting to lose fat and keep it off
