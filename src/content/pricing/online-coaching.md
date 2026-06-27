@@ -1,14 +1,14 @@
 ---
-name: Online Coaching
-price: "₹12,000"
-period: "/ 12 sessions"
+name: Foundation
+price: ₹12,000
+period: / 12 sessions
 mode: Fully remote
 features:
-  - Custom training plan for your equipment
+  - Personalized workout program via GETFITWITHSHIYAS App
   - Flexible nutrition plan
   - Weekly check-ins & progress reviews
   - Direct WhatsApp access to Shiyas
-  - Video form analysis
+  - Program updates based on progress
 highlighted: false
 cta: Start online
 order: 1
