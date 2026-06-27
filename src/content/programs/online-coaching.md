@@ -1,6 +1,7 @@
 ---
-title: Online Coaching
-summary: Train from anywhere with a custom workout and nutrition plan, weekly check-ins, and direct WhatsApp access to Shiyas. Same expertise, fully remote.
+title: FOUNDATION
+summary: Train from anywhere with a custom workout and nutrition plan, weekly
+  check-ins, and direct WhatsApp access to Shiyas. Same expertise, fully remote.
 mode: Online
 icon: laptop
 bestFor: Busy professionals and clients outside Bengaluru
