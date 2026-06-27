@@ -1,6 +1,6 @@
 ---
 name: PREMIUM
-price: ₹12,000
+price: ₹12,000 (12 Sessions)
 period: / 1 Month
 mode: "1 on 1 Personal Training "
 features:
