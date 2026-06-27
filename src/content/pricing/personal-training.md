@@ -10,7 +10,7 @@ features:
   - Real-time form correction
   - Nutrition guidance
   - Progress tracking every session
-highlighted: true
+highlighted: false
 cta: Book a free trial
 order: 2
 ---
