@@ -1,7 +1,7 @@
 ---
-name: Transformation Package
-price: "₹60,000"
-period: "/ 12 weeks"
+name: Elite
+price: ₹15,000
+period: / 1 Month
 mode: In-person & Online
 features:
   - Goal-oriented 12-week structured plan
