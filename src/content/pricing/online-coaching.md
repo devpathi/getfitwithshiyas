@@ -1,7 +1,7 @@
 ---
 name: Foundation
 price: ₹12,000
-period: / 12 sessions
+period: / 12 weeks
 mode: Fully remote
 features:
   - Personalized workout program via GETFITWITHSHIYAS App
